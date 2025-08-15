@@ -24,25 +24,25 @@ export const weddingInfo: WeddingInfo = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: './images/photo1.jpg',
+    src: 'https://picsum.photos/800/600?random=1',
     alt: '사진 1',
     width: 800,
     height: 600
   },
   {
-    src: './images/photo2.jpg',
+    src: 'https://picsum.photos/800/600?random=2',
     alt: '사진 2', 
     width: 800,
     height: 600
   },
   {
-    src: './images/photo3.jpg',
+    src: 'https://picsum.photos/800/600?random=3',
     alt: '사진 3',
     width: 800,
     height: 600
   },
   {
-    src: './images/photo4.jpg',
+    src: 'https://picsum.photos/800/600?random=4',
     alt: '사진 4',
     width: 800,
     height: 600
