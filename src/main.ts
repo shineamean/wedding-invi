@@ -20,14 +20,17 @@ function initializeGallery() {
 function initializeSmoothScroll() {
   // Add smooth scroll behavior for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', (e) => {
       e.preventDefault()
-      const target = document.querySelector(this.getAttribute('href') as string)
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        })
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href')
+      if (href) {
+        const target = document.querySelector(href)
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
       }
     })
   })
