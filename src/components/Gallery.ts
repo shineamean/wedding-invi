@@ -3,7 +3,8 @@ import { galleryImages } from '../data/wedding-info'
 export function Gallery(): string {
   const imageGrid = galleryImages.map((image, index) => `
     <div class="gallery-item" data-index="${index}">
-      <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+      <img src="${image.src}" alt="${image.alt}" loading="lazy" 
+           onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-img\\'>📷<br/>사진 준비중</div>'" />
     </div>
   `).join('')
   

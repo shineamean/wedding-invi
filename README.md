@@ -74,10 +74,15 @@ export const weddingInfo: WeddingInfo = {
 }
 ```
 
-### 갤러리 이미지 추가
+### 갤러리 이미지 교체
 
-1. `public/images/` 폴더에 이미지 파일들을 추가
-2. `src/data/wedding-info.ts`의 `galleryImages` 배열 수정
+**방법 1: 로컬 이미지 사용**
+1. `public/images/` 폴더에 실제 웨딩 사진들을 추가
+2. `src/data/wedding-info.ts`에서 `galleryImages` 배열의 `src` 경로를 `'./images/your-photo.jpg'`로 수정
+
+**방법 2: 온라인 이미지 사용 (현재 설정)**
+- 현재는 [Lorem Picsum](https://picsum.photos/) placeholder 이미지를 사용
+- 실제 이미지 URL로 교체 가능
 
 ### 스타일 커스터마이징
 
