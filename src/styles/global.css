@@ -1,0 +1,498 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Serif KR', serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fefefe;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Section Titles */
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #8B4B8C;
+}
+
+/* Cover Section */
+.cover {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f1f5 0%, #e8dde8 50%, #d4c7d4 100%);
+  overflow: hidden;
+}
+
+.cover-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/cover-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.couple-names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.groom-name,
+.bride-name {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #5a3a5a;
+}
+
+.heart {
+  font-size: 1.5rem;
+  color: #e91e63;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.couple-names-en {
+  margin-bottom: 2rem;
+}
+
+.names-en {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: #8B4B8C;
+  font-weight: 500;
+}
+
+.wedding-date {
+  margin-bottom: 3rem;
+}
+
+.wedding-date p {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.date {
+  font-size: 1.3rem !important;
+  font-weight: 500;
+  color: #5a3a5a !important;
+}
+
+.scroll-indicator {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  color: #8B4B8C;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* Letter Section */
+.letter {
+  padding: 4rem 0;
+  background-color: #fefefe;
+}
+
+.letter-content {
+  text-align: center;
+  line-height: 1.8;
+}
+
+.greeting,
+.invitation-text,
+.blessing-request {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.parents-info {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f9f7f9 0%, #f0edf0 100%);
+  border-radius: 15px;
+}
+
+.groom-parents,
+.bride-parents {
+  margin-bottom: 1.5rem;
+}
+
+.parent-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #8B4B8C;
+  margin-bottom: 0.5rem;
+}
+
+.parent-names {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.parent-names strong {
+  color: #5a3a5a;
+  font-weight: 600;
+}
+
+/* Gallery Section */
+.gallery {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f5f8 0%, #f0edf0 100%);
+}
+
+.gallery-subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Location Section */
+.location {
+  padding: 4rem 0;
+  background-color: #fefefe;
+}
+
+.location-info {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.venue-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5a3a5a;
+  margin-bottom: 1rem;
+}
+
+.venue-address,
+.venue-phone {
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.ceremony-info {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f9f7f9 0%, #f0edf0 100%);
+  border-radius: 15px;
+}
+
+.ceremony-date {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #8B4B8C;
+  margin-bottom: 0.5rem;
+}
+
+.ceremony-time {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.map-container {
+  margin: 3rem 0;
+}
+
+.map-placeholder {
+  height: 200px;
+  background: #f5f5f5;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.map-note {
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.transport-info h4 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #5a3a5a;
+  font-size: 1.2rem;
+}
+
+.transport-methods {
+  display: grid;
+  gap: 1rem;
+}
+
+.transport-item {
+  padding: 1rem;
+  background: linear-gradient(135deg, #f9f7f9 0%, #f0edf0 100%);
+  border-radius: 10px;
+}
+
+.transport-item h5 {
+  color: #8B4B8C;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.transport-item p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.2rem;
+}
+
+/* Contact Section */
+.contact {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f5f8 0%, #f0edf0 100%);
+}
+
+.contact-subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.contact-item {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.contact-name {
+  font-weight: 600;
+  color: #5a3a5a;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.contact-relation {
+  color: #888;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.contact-phone {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #8B4B8C;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  transition: background 0.3s ease;
+}
+
+.contact-phone:hover {
+  background: #7a3f7a;
+}
+
+.message-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.message-section h3 {
+  color: #5a3a5a;
+  margin-bottom: 1rem;
+}
+
+.message-note {
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.message-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.message-btn {
+  padding: 0.8rem 1.5rem;
+  background: white;
+  border: 2px solid #8B4B8C;
+  color: #8B4B8C;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.message-btn:hover {
+  background: #8B4B8C;
+  color: white;
+}
+
+/* Footer */
+.wedding-footer {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.footer-text {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.footer-heart {
+  font-size: 2rem;
+  color: #e91e63;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .couple-names {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .groom-name,
+  .bride-name {
+    font-size: 1.8rem;
+  }
+  
+  .names-en {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .message-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .message-btn {
+    width: 200px;
+  }
+}
+
+@media (max-width: 360px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .transport-methods {
+    gap: 0.8rem;
+  }
+  
+  .transport-item {
+    padding: 0.8rem;
+  }
+}
