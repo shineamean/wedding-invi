@@ -24,25 +24,25 @@ export const weddingInfo: WeddingInfo = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: '/images/photo1.jpg',
+    src: './images/photo1.jpg',
     alt: '사진 1',
     width: 800,
     height: 600
   },
   {
-    src: '/images/photo2.jpg',
+    src: './images/photo2.jpg',
     alt: '사진 2', 
     width: 800,
     height: 600
   },
   {
-    src: '/images/photo3.jpg',
+    src: './images/photo3.jpg',
     alt: '사진 3',
     width: 800,
     height: 600
   },
   {
-    src: '/images/photo4.jpg',
+    src: './images/photo4.jpg',
     alt: '사진 4',
     width: 800,
     height: 600
