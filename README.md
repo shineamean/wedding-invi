@@ -94,10 +94,19 @@ export const weddingInfo: WeddingInfo = {
 
 GitHub Actions를 통해 자동으로 GitHub Pages에 배포됩니다.
 
-1. GitHub 저장소 생성
-2. 코드 push
-3. Settings > Pages > Source를 "GitHub Actions"로 설정
-4. main 브랜치에 push시 자동 배포
+### 배포 설정 방법
+
+1. GitHub 저장소 생성 후 코드 push
+2. GitHub 저장소 Settings > Pages로 이동
+3. **Source**를 "GitHub Actions"로 설정
+4. 또는 **Source**를 "Deploy from a branch"로 설정하고 **Branch**를 "gh-pages"로 선택
+5. main 브랜치에 push시 자동 배포
+
+### 문제 해결
+
+GitHub Pages가 활성화되지 않은 경우:
+- 저장소 Settings > Pages에서 수동으로 활성화
+- 또는 대안 워크플로우 사용 (deploy-alternative.yml.backup 파일 참조)
 
 ## 📄 라이선스
 
