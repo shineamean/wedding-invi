@@ -34,17 +34,8 @@ export function Location(): string {
           <div class="transport-methods">
             <div class="transport-item">
               <h5>🚇 지하철</h5>
-              <p>2호선 강남역 3번 출구 도보 5분</p>
-            </div>
-            <div class="transport-item">
-              <h5>🚌 버스</h5>
-              <p>강남역 정류장 하차</p>
-              <p>146, 301, 360, 740번</p>
-            </div>
-            <div class="transport-item">
-              <h5>🚗 자가용</h5>
-              <p>지하 주차장 이용 가능</p>
-              <p>주차비 무료 (3시간)</p>
+              <p>1, 2호선 시청역 7번 출구 도보 7분</p>
+              <p>4호선 회현역 7번 출구 도보 5분</p>
             </div>
           </div>
         </div>
