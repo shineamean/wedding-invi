@@ -2,16 +2,16 @@ import { WeddingInfo, GalleryImage, ContactInfo } from '../types'
 
 export const weddingInfo: WeddingInfo = {
   bride: {
-    name: '김지환',
-    nameEn: 'Ji Hwan Kim',
-    father: '김봉수',
-    mother: '정영주'
-  },
-  groom: {
     name: '김이현',
     nameEn: 'Yi Hyun Kim', 
     father: '김진호',
     mother: '이숙희'
+  },
+  groom: {
+    name: '김지환',
+    nameEn: 'Ji Hwan Kim',
+    father: '김봉수',
+    mother: '정영주'
   },
   ceremony: {
     date: '2025년 12월 14일',
