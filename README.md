@@ -113,20 +113,27 @@ git push -u origin main
 
 **2단계: GitHub Pages 설정**
 1. GitHub 저장소 Settings > Pages로 이동
-2. **Source**를 "Deploy from a branch" 선택
-3. **Branch**를 "gh-pages" 선택 (자동으로 생성됨)
-4. **Save** 클릭
+2. **Source**를 "GitHub Actions" 선택
+3. 자동으로 워크플로우가 감지됩니다
 
 **3단계: 배포 확인**
-- main 브랜치에 push하면 자동으로 `gh-pages` 브랜치에 빌드 결과물이 배포됩니다
+- main 브랜치에 push하면 자동으로 GitHub Actions가 실행됩니다
+- Actions 탭에서 배포 진행상황을 확인할 수 있습니다
 - 몇 분 후 `https://shineamean.github.io/wedding-invi/`에서 확인 가능
 
 ### 문제 해결
 
 **404 오류가 발생하는 경우:**
-1. GitHub Pages 설정에서 Source가 "gh-pages" 브랜치로 설정되었는지 확인
+1. GitHub Pages 설정에서 Source가 "GitHub Actions"로 설정되었는지 확인
 2. GitHub Actions 탭에서 배포가 성공했는지 확인
-3. 브라우저 캐시 삭제 후 재시도
+3. 워크플로우에서 권한 오류가 있는지 확인
+4. 브라우저 캐시 삭제 후 재시도
+
+**권한 오류가 발생하는 경우:**
+1. 저장소 Settings > Actions > General 이동
+2. "Workflow permissions"에서 "Read and write permissions" 선택
+3. "Allow GitHub Actions to create and approve pull requests" 체크
+4. Save 후 다시 배포 시도
 
 ## 📄 라이선스
 
