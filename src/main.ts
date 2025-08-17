@@ -1,5 +1,6 @@
 import './styles/global.css'
 import { WeddingApp } from './components/WeddingApp'
+import { initNaverMap } from './components/NaverMap'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app')
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize components after DOM is ready
     initializeGallery()
     initializeSmoothScroll()
+    initNaverMap()
   }
 })
 

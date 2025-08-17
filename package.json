@@ -22,6 +22,8 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "photoswipe": "^5.4.4"
+    "@types/navermaps": "^3.9.1",
+    "photoswipe": "^5.4.4",
+    "react-naver-maps": "^0.1.4"
   }
 }

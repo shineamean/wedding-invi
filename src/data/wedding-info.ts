@@ -18,6 +18,12 @@ export const weddingInfo: WeddingInfo = {
     time: '오후 12시 30분',
     venue: '한국은행 2층 컨퍼런스홀',
     address: '서울특별시 중구 남대문로 39'
+  },
+  mapInfo: {
+    lat: 37.5640907,
+    lon: 126.9813174,
+    naverMapUrl: 'https://map.naver.com/p/search/%ED%95%9C%EA%B5%AD%EC%9D%80%ED%96%89/place/11572364',
+    kakaoMapUrl: 'https://map.kakao.com/link/map/%ED%95%9C%EA%B5%AD%EC%9D%80%ED%96%89,37.5640907,126.9813174'
   }
 }
 

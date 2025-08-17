@@ -17,6 +17,12 @@ export interface WeddingInfo {
     venue: string
     address: string
   }
+  mapInfo: {
+    lat: number
+    lon: number
+    naverMapUrl: string
+    kakaoMapUrl: string
+  }
 }
 
 export interface GalleryImage {

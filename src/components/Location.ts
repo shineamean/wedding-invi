@@ -1,4 +1,5 @@
 import { weddingInfo } from '../data/wedding-info'
+import { NaverMap } from './NaverMap'
 
 export function Location(): string {
   const { ceremony } = weddingInfo
@@ -23,10 +24,7 @@ export function Location(): string {
         </div>
         
         <div class="map-container">
-          <div class="map-placeholder">
-            <p>🗺️ 지도</p>
-            <p class="map-note">실제 구현시 Google Maps 또는 네이버 지도 API를 연동해주세요</p>
-          </div>
+          ${NaverMap()}
         </div>
         
         <div class="transport-info">

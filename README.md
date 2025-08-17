@@ -26,6 +26,22 @@ TypeScript와 Vite를 기반으로 한 모바일 최적화 청첩장입니다.
 npm install
 ```
 
+### 네이버 지도 API 설정
+
+1. [NAVER CLOUD PLATFORM](https://console.ncloud.com/naver-service/application)에서 어플리케이션을 등록하고 Client ID를 발급받습니다.
+
+2. `.env.sample` 파일을 복사해서 `.env` 파일을 만듭니다:
+```bash
+cp .env.sample .env
+```
+
+3. `.env` 파일에서 `VITE_APP_NAVERMAPS_CLIENT_ID`에 발급받은 Client ID를 입력합니다:
+```env
+VITE_APP_NAVERMAPS_CLIENT_ID=your_actual_client_id_here
+```
+
+> **참고**: 네이버 지도 API 설정 없이도 프로젝트는 정상 작동하며, 지도 버튼(네이버 지도, 카카오맵)을 통해 외부 지도 서비스로 연결됩니다.
+
 ### 개발 서버 실행
 
 ```bash

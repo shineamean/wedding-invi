@@ -258,6 +258,63 @@ body {
   background-color: #fefefe;
 }
 
+/* Naver Map */
+.naver-map-container {
+  margin: 2rem 0;
+}
+
+.naver-map {
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.map-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.map-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.naver-btn {
+  background: linear-gradient(135deg, #03C75A 0%, #02B04F 100%);
+}
+
+.naver-btn:hover {
+  background: linear-gradient(135deg, #02B04F 0%, #029940 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(3, 199, 90, 0.3);
+}
+
+.kakao-btn {
+  background: linear-gradient(135deg, #FEE500 0%, #FFCD00 100%);
+  color: #333;
+}
+
+.kakao-btn:hover {
+  background: linear-gradient(135deg, #FFCD00 0%, #FFB800 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(254, 229, 0, 0.3);
+}
+
 .location-info {
   text-align: center;
   margin-bottom: 3rem;
