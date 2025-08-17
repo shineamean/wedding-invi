@@ -101,17 +101,32 @@ GitHub Actions를 통해 자동으로 GitHub Pages에 배포됩니다.
 
 ### 배포 설정 방법
 
-1. GitHub 저장소 생성 후 코드 push
-2. GitHub 저장소 Settings > Pages로 이동
-3. **Source**를 "GitHub Actions"로 설정
-4. 또는 **Source**를 "Deploy from a branch"로 설정하고 **Branch**를 "gh-pages"로 선택
-5. main 브랜치에 push시 자동 배포
+**1단계: GitHub 저장소 생성 및 코드 업로드**
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/shineamean/wedding-invi.git
+git push -u origin main
+```
+
+**2단계: GitHub Pages 설정**
+1. GitHub 저장소 Settings > Pages로 이동
+2. **Source**를 "Deploy from a branch" 선택
+3. **Branch**를 "gh-pages" 선택 (자동으로 생성됨)
+4. **Save** 클릭
+
+**3단계: 배포 확인**
+- main 브랜치에 push하면 자동으로 `gh-pages` 브랜치에 빌드 결과물이 배포됩니다
+- 몇 분 후 `https://shineamean.github.io/wedding-invi/`에서 확인 가능
 
 ### 문제 해결
 
-GitHub Pages가 활성화되지 않은 경우:
-- 저장소 Settings > Pages에서 수동으로 활성화
-- 또는 대안 워크플로우 사용 (deploy-alternative.yml.backup 파일 참조)
+**404 오류가 발생하는 경우:**
+1. GitHub Pages 설정에서 Source가 "gh-pages" 브랜치로 설정되었는지 확인
+2. GitHub Actions 탭에서 배포가 성공했는지 확인
+3. 브라우저 캐시 삭제 후 재시도
 
 ## 📄 라이선스
 
