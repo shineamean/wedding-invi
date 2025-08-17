@@ -12,7 +12,6 @@ export function Location(): string {
           <div class="venue-info">
             <h3 class="venue-name">${ceremony.venue}</h3>
             <p class="venue-address">${ceremony.address}</p>
-            <p class="venue-phone">📞 ${ceremony.phone}</p>
           </div>
           
           <div class="ceremony-info">

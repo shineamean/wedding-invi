@@ -68,8 +68,7 @@ export const weddingInfo: WeddingInfo = {
     date: '2024년 12월 15일',
     time: '오후 2시 30분',
     venue: '웨딩홀명',
-    address: '주소',
-    phone: '전화번호'
+    address: '주소'
   }
 }
 ```

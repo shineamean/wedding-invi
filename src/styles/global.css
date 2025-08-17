@@ -270,8 +270,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.venue-address,
-.venue-phone {
+.venue-address {
   margin-bottom: 0.5rem;
   color: #666;
 }
@@ -401,6 +400,8 @@ body {
 .contact-phone:hover {
   background: #7a3f7a;
 }
+
+
 
 .message-section {
   text-align: center;

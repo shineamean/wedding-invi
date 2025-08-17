@@ -16,7 +16,6 @@ export interface WeddingInfo {
     time: string
     venue: string
     address: string
-    phone: string
   }
 }
 
@@ -32,3 +31,5 @@ export interface ContactInfo {
   relation: string
   phone: string
 }
+
+
