@@ -81,3 +81,6 @@ temp/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Firebase configuration (keep secret)
+src/firebase-config.ts

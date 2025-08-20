@@ -1,4 +1,5 @@
 import { contactInfo } from '../data/wedding-info'
+import { Guestbook } from './Guestbook'
 
 export function Contact(): string {
   const contactList = contactInfo.map(contact => `
@@ -21,22 +22,7 @@ export function Contact(): string {
           ${contactList}
         </div>
         
-        <div class="message-section">
-          <h3>축하 메시지</h3>
-          <p class="message-note">
-            축하의 마음을 전해주세요<br>
-            소중한 말씀 감사히 받겠습니다
-          </p>
-          
-          <div class="message-buttons">
-            <button class="message-btn" onclick="window.open('sms:', '_blank')">
-              💌 문자 보내기
-            </button>
-            <button class="message-btn" onclick="window.open('mailto:', '_blank')">
-              📧 이메일 보내기
-            </button>
-          </div>
-        </div>
+        ${Guestbook()}
         
         <footer class="wedding-footer">
           <p class="footer-text">

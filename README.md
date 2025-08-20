@@ -9,6 +9,7 @@ TypeScript와 Vite를 기반으로 한 모바일 최적화 청첩장입니다.
 - 📸 갤러리 섹션
 - 📍 위치 및 교통편 안내
 - 📞 연락처 정보
+- 📝 방명록 기능 (Firebase 연동)
 - 🚀 GitHub Pages 자동 배포
 
 ## 🛠️ 기술 스택
@@ -16,6 +17,7 @@ TypeScript와 Vite를 기반으로 한 모바일 최적화 청첩장입니다.
 - **TypeScript** - 타입 안전성을 위한 정적 타입 언어
 - **Vite** - 빠른 빌드 도구
 - **CSS3** - 모던 스타일링과 애니메이션
+- **Firebase** - 방명록 데이터 저장 (선택사항)
 - **GitHub Pages** - 무료 호스팅
 
 ## 🚀 시작하기
@@ -85,6 +87,68 @@ export const weddingInfo: WeddingInfo = {
     time: '오후 2시 30분',
     venue: '웨딩홀명',
     address: '주소'
+  }
+}
+```
+
+### 방명록 설정 (Firebase)
+
+방명록 기능을 사용하려면 Firebase 프로젝트를 설정해야 합니다. Firebase를 설정하지 않으면 자동으로 로컬 저장소를 사용합니다.
+
+#### Firebase 설정 방법
+
+1. **Firebase 프로젝트 생성**
+   - [Firebase Console](https://console.firebase.google.com/) 접속
+   - "프로젝트 추가" 클릭하여 새 프로젝트 생성
+
+2. **웹 앱 추가**
+   - 프로젝트 설정에서 "웹 앱 추가" 선택
+   - 앱 닉네임 입력 후 등록
+
+3. **Firestore 데이터베이스 설정**
+   - Firebase 콘솔에서 "Firestore Database" 선택
+   - "데이터베이스 만들기" 클릭
+   - **테스트 모드**로 시작 (프로덕션 모드는 보안 규칙 설정 필요)
+   - 위치: **asia-northeast3 (서울)** 권장
+
+4. **설정 파일 생성**
+   ```bash
+   # firebase-config.example.ts 파일을 복사
+   cp firebase-config.example.ts src/firebase-config.ts
+   ```
+
+5. **Firebase 설정 값 입력**
+   - Firebase 콘솔에서 프로젝트 설정 → 일반 탭으로 이동
+   - "내 앱" 섹션에서 웹 앱의 "구성" 확인
+   - `src/firebase-config.ts` 파일에 설정 값 입력:
+
+   ```typescript
+   export const firebaseConfig = {
+     apiKey: "실제-api-키",
+     authDomain: "프로젝트명.firebaseapp.com",
+     projectId: "프로젝트-id",
+     storageBucket: "프로젝트명.appspot.com",
+     messagingSenderId: "숫자",
+     appId: "앱-id"
+   }
+   ```
+
+#### 보안 규칙 설정 (선택사항)
+
+Firestore 보안 규칙을 설정하여 방명록 스팸을 방지할 수 있습니다:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /guestbook/{document} {
+      allow read: if true;
+      allow create: if request.auth == null 
+        && request.resource.data.name is string
+        && request.resource.data.message is string
+        && request.resource.data.name.size() <= 20
+        && request.resource.data.message.size() <= 200;
+    }
   }
 }
 ```

@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@types/navermaps": "^3.9.1",
+    "firebase": "^12.1.0",
     "photoswipe": "^5.4.4",
     "react-naver-maps": "^0.1.4"
   }
