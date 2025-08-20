@@ -82,5 +82,5 @@ temp/
 ehthumbs.db
 Thumbs.db
 
-# Firebase configuration (keep secret)
-src/firebase-config.ts
+# Firebase configuration
+# src/firebase-config.ts - 주석 처리 (빈 설정으로 GitHub에 포함)
