@@ -6,7 +6,7 @@ export function Letter(): string {
   return `
     <section id="letter" class="letter">
       <div class="container">
-        <h2 class="section-title">초대합니다</h2>
+        <h2 class="section-title-kr">초대합니다</h2>
         
         <div class="letter-content">
           <p class="greeting">

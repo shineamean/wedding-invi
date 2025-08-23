@@ -33,6 +33,16 @@ body {
   color: #8B4B8C;
 }
 
+.section-title-kr {
+  font-family: 'Nanum Myeongjo', 'KoPubDotum', 'Malgun Gothic', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #8B4B8C;
+  letter-spacing: 0.1em;
+}
+
 /* Cover Section */
 .cover {
   position: relative;
