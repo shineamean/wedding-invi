@@ -10,9 +10,11 @@ export class BackgroundMusic {
   private init() {
     // Create audio element
     this.audio = new Audio()
-    this.audio.src = '/wedding-music.mp3' // 음원 파일 경로 (public 폴더에 위치)
+    // GitHub Pages와 로컬 개발 환경을 모두 지원하는 경로 설정
+    const basePath = import.meta.env.BASE_URL || '/'
+    this.audio.src = `${basePath}wedding-music.mp3` // 음원 파일 경로 (public 폴더에 위치)
     this.audio.loop = true
-    this.audio.volume = 0.3 // 30% 볼륨으로 설정
+    this.audio.volume = 0.0 // 페이드인을 위해 0에서 시작
     
     // Add audio element to DOM (hidden)
     this.audio.style.display = 'none'
@@ -83,8 +85,10 @@ export class BackgroundMusic {
         this.audio.pause()
         this.isPlaying = false
       } else {
+        this.audio.volume = 0.0 // 페이드인을 위해 0에서 시작
         await this.audio.play()
         this.isPlaying = true
+        this.fadeIn() // 부드러운 페이드인 효과
       }
       this.updateButton()
     } catch (error) {
@@ -95,6 +99,9 @@ export class BackgroundMusic {
   }
 
   private handleAutoplayRestrictions() {
+    // 페이지 로드 시 즉시 자동재생 시도
+    this.tryAutoplay()
+    
     // 사용자 상호작용 후 음악 재생 시도
     const startMusic = async () => {
       try {
@@ -102,19 +109,65 @@ export class BackgroundMusic {
           await this.audio.play()
           this.isPlaying = true
           this.updateButton()
+          this.fadeIn() // 부드러운 페이드인 효과
           
           // 이벤트 리스너 제거 (한 번만 실행)
           document.removeEventListener('click', startMusic)
           document.removeEventListener('touchstart', startMusic)
+          document.removeEventListener('scroll', startMusic)
+          document.removeEventListener('keydown', startMusic)
         }
       } catch (error) {
         console.log('자동 음악 재생 실패:', error)
       }
     }
 
-    // 첫 번째 클릭/터치 시 음악 재생 시도
+    // 다양한 사용자 상호작용에서 음악 재생 시도
     document.addEventListener('click', startMusic, { once: true })
     document.addEventListener('touchstart', startMusic, { once: true })
+    document.addEventListener('scroll', startMusic, { once: true })
+    document.addEventListener('keydown', startMusic, { once: true })
+  }
+
+  private async tryAutoplay() {
+    // 페이지 로드 직후 자동재생 시도
+    try {
+      if (this.audio) {
+        await this.audio.play()
+        this.isPlaying = true
+        this.updateButton()
+        this.fadeIn() // 부드러운 페이드인 효과
+        console.log('자동재생 성공!')
+      }
+    } catch (error) {
+      console.log('자동재생 차단됨 - 사용자 상호작용 대기 중...')
+    }
+  }
+
+  private fadeIn() {
+    // 2초에 걸쳐 볼륨을 0에서 0.3으로 페이드인
+    if (!this.audio) return
+    
+    const targetVolume = 0.3
+    const fadeTime = 2000 // 2초
+    const steps = 50
+    const volumeStep = targetVolume / steps
+    const timeStep = fadeTime / steps
+    
+    let currentStep = 0
+    
+    const fadeInterval = setInterval(() => {
+      if (currentStep >= steps || !this.audio || !this.isPlaying) {
+        clearInterval(fadeInterval)
+        if (this.audio && this.isPlaying) {
+          this.audio.volume = targetVolume
+        }
+        return
+      }
+      
+      this.audio.volume = volumeStep * currentStep
+      currentStep++
+    }, timeStep)
   }
 
   private showAutoplayMessage() {
