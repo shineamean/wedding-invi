@@ -1,7 +1,7 @@
 import './styles/global.css'
 import { WeddingApp } from './components/WeddingApp'
 import { initNaverMap } from './components/NaverMap'
-import { backgroundMusic } from './components/BackgroundMusic'
+import './components/BackgroundMusic'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app')
