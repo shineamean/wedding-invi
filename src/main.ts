@@ -1,6 +1,7 @@
 import './styles/global.css'
 import { WeddingApp } from './components/WeddingApp'
 import { initNaverMap } from './components/NaverMap'
+import { backgroundMusic } from './components/BackgroundMusic'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app')
@@ -11,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeGallery()
     initializeSmoothScroll()
     initNaverMap()
+    
+    // Background music is automatically initialized via import
   }
 })
 

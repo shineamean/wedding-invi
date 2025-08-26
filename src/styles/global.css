@@ -602,6 +602,38 @@ body {
   color: #d32f2f;
 }
 
+/* Background Music Control */
+.music-control {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.music-control:active {
+  transform: scale(0.95) !important;
+}
+
+.autoplay-message {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Responsive adjustments for music control */
+@media (max-width: 480px) {
+  .music-control {
+    top: 15px !important;
+    right: 15px !important;
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 18px !important;
+  }
+}
+
 /* Footer */
 .wedding-footer {
   text-align: center;
