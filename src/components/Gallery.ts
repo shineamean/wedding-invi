@@ -3,7 +3,10 @@ import { galleryImages } from '../data/wedding-info'
 export function Gallery(): string {
   const imageGrid = galleryImages.map((image, index) => `
     <div class="gallery-item" data-index="${index}">
-      <img src="${image.src}" alt="${image.alt}" loading="lazy" 
+      <img src="${image.src}" alt="${image.alt}" 
+           loading="lazy" 
+           decoding="async"
+           fetchpriority="${index < 3 ? 'high' : 'low'}"
            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-img\\'>📷<br/>사진 준비중</div>'" />
     </div>
   `).join('')
@@ -18,7 +21,6 @@ export function Gallery(): string {
           ${imageGrid}
         </div>
         
-        <p class="gallery-note">사진을 클릭하면 크게 볼 수 있습니다</p>
       </div>
     </section>
   `

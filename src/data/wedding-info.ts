@@ -29,26 +29,56 @@ export const weddingInfo: WeddingInfo = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: 'https://picsum.photos/800/600?random=1',
-    alt: '사진 1',
+    src: './images/photo1.webp',
+    alt: '웨딩 사진 1',
     width: 800,
     height: 600
   },
   {
-    src: 'https://picsum.photos/800/600?random=2',
-    alt: '사진 2', 
+    src: './images/photo2.webp',
+    alt: '웨딩 사진 2', 
     width: 800,
     height: 600
   },
   {
-    src: 'https://picsum.photos/800/600?random=3',
-    alt: '사진 3',
+    src: './images/photo3.webp',
+    alt: '웨딩 사진 3',
     width: 800,
     height: 600
   },
   {
-    src: 'https://picsum.photos/800/600?random=4',
-    alt: '사진 4',
+    src: './images/photo4.webp',
+    alt: '웨딩 사진 4',
+    width: 800,
+    height: 600
+  },
+  {
+    src: './images/photo5.webp',
+    alt: '웨딩 사진 5',
+    width: 800,
+    height: 600
+  },
+  {
+    src: './images/photo6.webp',
+    alt: '웨딩 사진 6',
+    width: 800,
+    height: 600
+  },
+  {
+    src: './images/photo7.webp',
+    alt: '웨딩 사진 7',
+    width: 800,
+    height: 600
+  },
+  {
+    src: './images/photo8.webp',
+    alt: '웨딩 사진 8',
+    width: 800,
+    height: 600
+  },
+  {
+    src: './images/photo9.webp',
+    alt: '웨딩 사진 9',
     width: 800,
     height: 600
   }
@@ -57,23 +87,23 @@ export const galleryImages: GalleryImage[] = [
 export const contactInfo: ContactInfo[] = [
   {
     name: '신랑측 아버지',
-    relation: '박아버지',
-    phone: '010-1234-5678'
+    relation: '김봉수',
+    phone: '010-8628-9769'
   },
   {
     name: '신랑측 어머니', 
-    relation: '박어머니',
-    phone: '010-2345-6789'
+    relation: '정영주',
+    phone: '010-5603-9769'
   },
   {
     name: '신부측 아버지',
-    relation: '김아버지', 
-    phone: '010-3456-7890'
+    relation: '김진호', 
+    phone: '010-4155-4772'
   },
   {
     name: '신부측 어머니',
-    relation: '김어머니',
-    phone: '010-4567-8901'
+    relation: '이숙희',
+    phone: '010-9477-0317'
   }
 ]
 
