@@ -837,16 +837,16 @@ body {
   }
   
   .couple-names {
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
   
   .groom-name,
   .bride-name {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   
   .heart {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   
   .names-en {
@@ -928,16 +928,16 @@ body {
   }
   
   .couple-names {
-    gap: 0.3rem;
+    gap: 0.2rem;
   }
   
   .groom-name,
   .bride-name {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
   
   .heart {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 
