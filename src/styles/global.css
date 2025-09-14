@@ -837,13 +837,16 @@ body {
   }
   
   .couple-names {
-    flex-direction: column;
     gap: 0.5rem;
   }
   
   .groom-name,
   .bride-name {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+  }
+  
+  .heart {
+    font-size: 1.2rem;
   }
   
   .names-en {
@@ -922,6 +925,19 @@ body {
   
   .transport-item {
     padding: 0.8rem;
+  }
+  
+  .couple-names {
+    gap: 0.3rem;
+  }
+  
+  .groom-name,
+  .bride-name {
+    font-size: 1.4rem;
+  }
+  
+  .heart {
+    font-size: 1rem;
   }
 }
 
