@@ -37,6 +37,13 @@ export function Letter(): string {
               <p class="parent-names">${bride.father} · ${bride.mother}의 딸 <strong>${bride.name}</strong></p>
             </div>
           </div>
+          
+          <div class="congratulation-section">
+            <button class="congratulation-btn" id="congratulation-btn">
+              <span>축하 연락하기</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>

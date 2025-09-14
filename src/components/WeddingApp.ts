@@ -3,6 +3,7 @@ import { Letter } from './Letter'
 import { Gallery } from './Gallery'
 import { Location } from './Location'
 import { Contact } from './Contact'
+import { CongratulationModal } from './CongratulationModal.js'
 
 export function WeddingApp(): string {
   return `
@@ -12,6 +13,7 @@ export function WeddingApp(): string {
       ${Gallery()}
       ${Location()}
       ${Contact()}
+      ${CongratulationModal()}
     </div>
   `
 }

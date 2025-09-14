@@ -86,6 +86,11 @@ export const galleryImages: GalleryImage[] = [
 
 export const contactInfo: ContactInfo[] = [
   {
+    name: '신랑',
+    relation: '김지환',
+    phone: '010-1234-5678'
+  },
+  {
     name: '신랑측 아버지',
     relation: '김봉수',
     phone: '010-8628-9769'
@@ -94,6 +99,11 @@ export const contactInfo: ContactInfo[] = [
     name: '신랑측 어머니', 
     relation: '정영주',
     phone: '010-5603-9769'
+  },
+  {
+    name: '신부',
+    relation: '김이현',
+    phone: '010-9876-5432'
   },
   {
     name: '신부측 아버지',
