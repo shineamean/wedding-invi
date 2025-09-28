@@ -57,12 +57,14 @@ body {
 
 .section-title-kr {
   font-family: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem auto;
   color: #34495E;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
+  display: block;
+  width: 100%;
 }
 
 /* Cover Section */
@@ -82,9 +84,10 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/photo1.webp');
-  background-size: cover;
+  background-image: url('./images/photo1.png');
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.3;
 }
 
@@ -308,40 +311,232 @@ body {
   font-size: 1rem;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
-  /* 그리드 성능 최적화 */
-  transform: translateZ(0);
-  will-change: scroll-position;
-  contain: layout style paint;
-}
-
-.gallery-item {
-  aspect-ratio: 1;
+.gallery-slider {
+  position: relative;
   overflow: hidden;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  min-height: 200px;
+  margin-bottom: 2rem;
 }
 
-.gallery-item:hover {
-  transform: scale(1.05);
+.gallery-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+  cursor: grab;
 }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.gallery-track:active {
+  cursor: grabbing;
+}
+
+.gallery-slide {
+  flex: 0 0 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  max-height: 80vh;
+}
+
+.gallery-slide.landscape {
+  aspect-ratio: 3/2;
+  min-height: 400px;
+}
+
+.gallery-slide.portrait {
+  aspect-ratio: 2/3;
+  min-height: 500px;
+  max-height: 70vh;
+}
+
+.gallery-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   /* 이미지 렌더링 최적화 */
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+}
+
+
+.gallery-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-indicator {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(93, 109, 126, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-indicator.active {
+  background: #5D6D7E;
+  transform: scale(1.2);
+}
+
+.gallery-indicator:hover {
+  background: rgba(93, 109, 126, 0.6);
+  transform: scale(1.1);
+}
+
+/* Gallery Side Areas for Hover Navigation */
+.gallery-side-areas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.gallery-side-area {
+  position: absolute;
+  top: 0;
+  width: 20%;
+  height: 100%;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-side-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.gallery-side-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.gallery-side-area:hover {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+}
+
+.gallery-side-left:hover {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 70%, rgba(0, 0, 0, 0) 100%);
+}
+
+.gallery-side-right:hover {
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 70%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Add subtle arrow indicators on hover */
+.gallery-side-area::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: none;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.gallery-side-left::before {
+  border-left: 3px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
+  transform: rotate(45deg) scale(0.5);
+  margin-right: 5px;
+}
+
+.gallery-side-right::before {
+  border-right: 3px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
+  transform: rotate(-45deg) scale(0.5);
+  margin-left: 5px;
+}
+
+.gallery-side-area:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gallery-side-left:hover::before {
+  transform: rotate(45deg) scale(1);
+  border-left-color: rgba(255, 255, 255, 1);
+  border-bottom-color: rgba(255, 255, 255, 1);
+}
+
+.gallery-side-right:hover::before {
+  transform: rotate(-45deg) scale(1);
+  border-right-color: rgba(255, 255, 255, 1);
+  border-bottom-color: rgba(255, 255, 255, 1);
+}
+
+/* Gallery Mobile Styles */
+@media (max-width: 768px) {
+  .gallery {
+    padding: 3rem 0;
+  }
+  
+  .gallery-slide {
+    min-height: 300px;
+    max-height: 60vh;
+  }
+  
+  .gallery-slide.landscape {
+    min-height: 300px;
+    max-height: 50vh;
+  }
+  
+  .gallery-slide.portrait {
+    min-height: 400px;
+    max-height: 60vh;
+  }
+  
+  .gallery-indicators {
+    margin-top: 1rem;
+  }
+  
+  .gallery-indicator {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Hide side areas on mobile to avoid interference with touch gestures */
+  .gallery-side-areas {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    padding: 2rem 0;
+  }
+  
+  .gallery-slide {
+    min-height: 250px;
+    max-height: 50vh;
+  }
+  
+  .gallery-slide.landscape {
+    min-height: 250px;
+    max-height: 40vh;
+  }
+  
+  .gallery-slide.portrait {
+    min-height: 350px;
+    max-height: 50vh;
+  }
+  
 }
 
 .placeholder-img {
@@ -855,6 +1050,11 @@ body {
   
   .section-title {
     font-size: 2rem;
+  }
+  
+  .section-title-kr {
+    font-size: 1.8rem;
+    letter-spacing: 0.03em;
   }
   
   .contact-toggle {

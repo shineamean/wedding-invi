@@ -20,8 +20,153 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function initializeGallery() {
-  // PhotoSwipe gallery initialization will be added later
-  console.log('Gallery initialized')
+  const galleryTrack = document.querySelector('.gallery-track') as HTMLElement
+  const indicators = document.querySelectorAll('.gallery-indicator') as NodeListOf<HTMLButtonElement>
+  
+  if (!galleryTrack) {
+    console.log('Gallery elements not found')
+    return
+  }
+
+  let currentIndex = 0
+  const totalSlides = indicators.length
+
+  function updateGallery() {
+    // Move the track
+    const translateX = -currentIndex * 100
+    galleryTrack.style.transform = `translateX(${translateX}%)`
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === currentIndex)
+    })
+  }
+
+  function goToSlide(index: number) {
+    currentIndex = Math.max(0, Math.min(index, totalSlides - 1))
+    updateGallery()
+  }
+
+  function nextSlide() {
+    if (currentIndex < totalSlides - 1) {
+      goToSlide(currentIndex + 1)
+    }
+  }
+
+  function prevSlide() {
+    if (currentIndex > 0) {
+      goToSlide(currentIndex - 1)
+    }
+  }
+
+  // Event listeners
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => goToSlide(index))
+  })
+
+  // Side area navigation
+  const sideAreas = document.querySelectorAll('.gallery-side-area') as NodeListOf<HTMLElement>
+  sideAreas.forEach(area => {
+    area.addEventListener('click', (e) => {
+      e.preventDefault()
+      const direction = area.getAttribute('data-direction')
+      if (direction === 'prev') {
+        prevSlide()
+      } else if (direction === 'next') {
+        nextSlide()
+      }
+    })
+  })
+
+  // Touch/swipe support
+  let startX = 0
+  let isDragging = false
+
+  galleryTrack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX
+    isDragging = true
+  }, { passive: true })
+
+  galleryTrack.addEventListener('touchmove', (e) => {
+    if (!isDragging) return
+    e.preventDefault()
+  }, { passive: false })
+
+  galleryTrack.addEventListener('touchend', (e) => {
+    if (!isDragging) return
+    isDragging = false
+    
+    const endX = e.changedTouches[0].clientX
+    const deltaX = startX - endX
+    const threshold = 50
+
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+  }, { passive: true })
+
+  // Mouse drag support
+  let mouseStartX = 0
+  let isMouseDragging = false
+
+  galleryTrack.addEventListener('mousedown', (e) => {
+    mouseStartX = e.clientX
+    isMouseDragging = true
+    galleryTrack.style.cursor = 'grabbing'
+    e.preventDefault()
+  })
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isMouseDragging) return
+    e.preventDefault()
+  })
+
+  document.addEventListener('mouseup', (e) => {
+    if (!isMouseDragging) return
+    isMouseDragging = false
+    galleryTrack.style.cursor = 'grab'
+    
+    const deltaX = mouseStartX - e.clientX
+    const threshold = 50
+
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+  })
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (document.activeElement?.closest('.gallery')) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        prevSlide()
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        nextSlide()
+      }
+    }
+  })
+
+  // Auto-play (optional - can be enabled)
+  // setInterval(() => {
+  //   if (currentIndex === totalSlides - 1) {
+  //     goToSlide(0)
+  //   } else {
+  //     nextSlide()
+  //   }
+  // }, 5000)
+
+  // Initialize
+  updateGallery()
+  console.log('Gallery slider initialized')
 }
 
 function initializeSmoothScroll() {
