@@ -3,6 +3,7 @@ import { WeddingApp } from './components/WeddingApp'
 import { initNaverMap } from './components/NaverMap'
 import { galleryImages } from './data/wedding-info'
 import './components/BackgroundMusic'
+import './components/CustomAlert'
 
 document.addEventListener('DOMContentLoaded', () => {
   // 인앱 브라우저 회피 체크 (페이지 로드 즉시 실행)
@@ -26,12 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-// 전역 함수 타입 정의
-declare global {
-  interface Window {
-    copyLink: () => void
-  }
-}
 
 // 인앱 브라우저 감지 및 회피 함수들
 function isKakaoTalkInAppBrowser(): boolean {
@@ -84,16 +79,6 @@ function avoidInAppBrowser(): void {
   console.log('✅ 일반 브라우저에서 접속됨')
 }
 
-// 링크 복사 함수  
-window.copyLink = function() {
-  const url = window.location.href
-  
-  navigator.clipboard.writeText(url).then(() => {
-    alert('청첩장 주소가 클립보드에 복사되었습니다! 📋')
-  }).catch(() => {
-    prompt('아래 주소를 복사해주세요:', url)
-  })
-}
 
 function initializeGallery() {
   const galleryTrack = document.querySelector('.gallery-track') as HTMLElement

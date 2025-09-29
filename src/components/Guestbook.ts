@@ -171,7 +171,10 @@ function setupGuestbookHandlers() {
     const message = messageInput.value.trim()
     
     if (!name || !message) {
-      alert('성함과 메시지를 모두 입력해주세요.')
+      window.showAlert({
+        message: '성함과 메시지를 모두 입력해주세요',
+        type: 'error'
+      })
       return
     }
     
@@ -190,13 +193,23 @@ function setupGuestbookHandlers() {
         // 목록 새로고침
         await loadGuestbookEntries()
         
-        alert('메시지가 성공적으로 등록되었습니다!')
+        window.showAlert({
+          title: '등록 완료',
+          message: '소중한 메시지가 성공적으로 등록되었습니다!',
+          type: 'success'
+        })
       } else {
-        alert('메시지 등록에 실패했습니다. 다시 시도해주세요.')
+        window.showAlert({
+          message: '메시지 등록에 실패했습니다.\n다시 시도해주세요',
+          type: 'error'
+        })
       }
     } catch (error) {
       console.error('방명록 등록 오류:', error)
-      alert('메시지 등록 중 오류가 발생했습니다.')
+      window.showAlert({
+        message: '메시지 등록 중 오류가 발생했습니다',
+        type: 'error'
+      })
     } finally {
       // 버튼 활성화
       submitBtn.disabled = false
