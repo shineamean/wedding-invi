@@ -8,11 +8,11 @@ export function NaverMap(): string {
       <div id="naver-map" class="naver-map"></div>
       <div class="map-buttons">
         <button class="map-btn naver-btn" onclick="window.open('${mapInfo.naverMapUrl}', '_blank')">
-          <img src="./images/naver-logo.svg" width="18" height="18" alt="네이버" style="margin-right: 8px;">
+          <img src="/wedding-invi/images/naver-logo.svg" width="18" height="18" alt="네이버" style="margin-right: 8px;">
           네이버 지도
         </button>
         <button class="map-btn kakao-btn" onclick="window.open('${mapInfo.kakaoMapUrl}', '_blank')">
-          <img src="./images/kakao-logo.png" width="18" height="18" alt="카카오" style="margin-right: 8px;">
+          <img src="/wedding-invi/images/kakao-logo.png" width="18" height="18" alt="카카오" style="margin-right: 8px;">
           카카오맵
         </button>
       </div>
