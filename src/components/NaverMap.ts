@@ -63,21 +63,51 @@ function createMap(): void {
     
     const map = new window.naver.maps.Map(mapElement, {
       center: location,
-      zoom: 17,
-      draggable: false,
-      pinchZoom: false,
-      scrollWheel: false,
-      keyboardShortcuts: false,
-      disableDoubleTapZoom: true,
-      disableDoubleClickZoom: true,
-      disableTwoFingerTapZoom: true
+      zoom: 16,
+      minZoom: 12,
+      maxZoom: 19,
+      draggable: true,           // 드래그로 지도 이동 가능
+      pinchZoom: true,          // 핀치 줌 가능
+      scrollWheel: true,        // 마우스 휠로 줌 가능
+      keyboardShortcuts: true,  // 키보드 단축키 가능
+      disableDoubleTapZoom: false,    // 더블탭 줌 가능
+      disableDoubleClickZoom: false,  // 더블클릭 줌 가능
+      disableTwoFingerTapZoom: false, // 두 손가락 탭 줌 가능
+      zoomControl: true,        // 줌 컨트롤 버튼 표시
+      zoomControlOptions: {
+        position: window.naver.maps.Position.TOP_RIGHT
+      }
     })
 
     // 마커 추가
-    new window.naver.maps.Marker({
+    const marker = new window.naver.maps.Marker({
       position: location,
       map: map,
-      title: '한국은행 2층 컨퍼런스홀'
+      title: '한국은행 2층 컨퍼런스홀',
+      icon: {
+        content: '<div style="background: #ff6b6b; color: white; padding: 8px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">💒 웨딩홀</div>',
+        anchor: new window.naver.maps.Point(30, 30)
+      }
+    })
+
+    // 정보창 추가
+    const infoWindow = new window.naver.maps.InfoWindow({
+      content: `
+        <div style="padding: 15px; min-width: 200px;">
+          <h4 style="margin: 0 0 8px 0; color: #333;">${weddingInfo.ceremony.venue}</h4>
+          <p style="margin: 0 0 5px 0; color: #666; font-size: 13px;">${weddingInfo.ceremony.address}</p>
+          <p style="margin: 0; color: #666; font-size: 13px;">📅 ${weddingInfo.ceremony.date} ${weddingInfo.ceremony.time}</p>
+        </div>
+      `
+    })
+
+    // 마커 클릭시 정보창 표시
+    window.naver.maps.Event.addListener(marker, 'click', () => {
+      if (infoWindow.getMap()) {
+        infoWindow.close()
+      } else {
+        infoWindow.open(map, marker)
+      }
     })
     
     console.log('네이버 지도가 성공적으로 로드되었습니다.')
