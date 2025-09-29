@@ -29,67 +29,67 @@ export const weddingInfo: WeddingInfo = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: '/wedding-invi/images/photo1.png',
+    src: '/wedding-invi/images/photo1.webp',
     alt: '웨딩 사진 1',
     width: 800,
     height: 600
   },
   {
-    src: '/wedding-invi/images/photo2.png',
+    src: '/wedding-invi/images/photo2.webp',
     alt: '웨딩 사진 2', 
     width: 800,
     height: 600
   },
   {
-    src: '/wedding-invi/images/photo3.png',
+    src: '/wedding-invi/images/photo3.webp',
     alt: '웨딩 사진 3',
     width: 600,
     height: 800
   },
   {
-    src: '/wedding-invi/images/photo4.png',
+    src: '/wedding-invi/images/photo4.webp',
     alt: '웨딩 사진 4',
     width: 800,
     height: 600
   },
   {
-    src: '/wedding-invi/images/photo5.png',
+    src: '/wedding-invi/images/photo5.webp',
     alt: '웨딩 사진 5',
     width: 600,
     height: 800
   },
   {
-    src: '/wedding-invi/images/photo6.png',
+    src: '/wedding-invi/images/photo6.webp',
     alt: '웨딩 사진 6',
     width: 800,
     height: 600
   },
   {
-    src: '/wedding-invi/images/photo7.png',
+    src: '/wedding-invi/images/photo7.webp',
     alt: '웨딩 사진 7',
     width: 600,
     height: 800
   },
   {
-    src: '/wedding-invi/images/photo8.png',
+    src: '/wedding-invi/images/photo8.webp',
     alt: '웨딩 사진 8',
     width: 800,
     height: 600
   },
   {
-    src: '/wedding-invi/images/photo9.png',
+    src: '/wedding-invi/images/photo9.webp',
     alt: '웨딩 사진 9',
     width: 600,
     height: 800
   },
   {
-    src: '/wedding-invi/images/photo10.png',
+    src: '/wedding-invi/images/photo10.webp',
     alt: '웨딩 사진 10',
     width: 800,
     height: 600
   },
   {
-    src: '/wedding-invi/images/photo11.png',
+    src: '/wedding-invi/images/photo11.webp',
     alt: '웨딩 사진 11',
     width: 600,
     height: 800
