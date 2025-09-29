@@ -337,20 +337,9 @@ body {
   justify-content: center;
   padding: 20px; /* 모든 슬라이드에 동일한 패딩 */
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* 부드러운 그라데이션 배경 */
-}
-
-/* 가로형 사진 */
-.gallery-slide.landscape {
-  height: 50vh;
-  min-height: 350px;
-  max-height: 500px;
-}
-
-/* 세로형 사진 */
-.gallery-slide.portrait {
-  height: 65vh;
-  min-height: 450px;
-  max-height: 650px;
+  height: 60vh; /* 모든 슬라이드 동일한 높이 */
+  min-height: 400px;
+  max-height: 600px;
 }
 
 .gallery-slide img {
