@@ -2,8 +2,11 @@ import { galleryImages } from '../data/wedding-info'
 
 export function Gallery(): string {
   const imageSlides = galleryImages.map((image, index) => {
+    const aspectRatio = image.width / image.height
+    const isLandscape = aspectRatio > 1
+    
     return `
-    <div class="gallery-slide" 
+    <div class="gallery-slide ${isLandscape ? 'landscape' : 'portrait'}" 
          data-index="${index}">
       <img src="${image.src}" alt="${image.alt}" 
            decoding="async"
