@@ -1056,14 +1056,16 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(45, 55, 72, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .custom-alert.show {
@@ -1077,99 +1079,114 @@ body {
 }
 
 .custom-alert-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
   text-align: center;
-  max-width: 320px;
+  max-width: 380px;
   width: 90%;
   position: relative;
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
+  transform: scale(0.95) translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .custom-alert.show .custom-alert-content {
-  transform: translateY(0);
-}
-
-.custom-alert-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  line-height: 1;
+  transform: scale(1) translateY(0);
 }
 
 .custom-alert-title {
-  font-size: 1.2rem;
+  font-size: 1.375rem;
   font-weight: 600;
-  color: #2C3E50;
-  margin-bottom: 0.5rem;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
   font-family: 'Noto Serif KR', serif;
+  letter-spacing: -0.025em;
 }
 
 .custom-alert-message {
   font-size: 1rem;
-  color: #5D6D7E;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 0;
   font-family: 'Noto Serif KR', serif;
 }
 
 .custom-alert-close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: none;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(113, 128, 150, 0.1);
   border: none;
-  font-size: 1.5rem;
-  color: #bdc3c7;
+  font-size: 1.25rem;
+  color: #718096;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 8px;
   transition: all 0.2s ease;
+  font-weight: 400;
 }
 
 .custom-alert-close:hover {
-  background: #f8f9fa;
-  color: #7f8c8d;
+  background: rgba(113, 128, 150, 0.2);
+  color: #2d3748;
 }
 
-/* 성공 타입 */
+/* 성공 타입 - 웨딩 사이트 테마 색상 */
 .custom-alert-success .custom-alert-content {
-  border-top: 4px solid #27ae60;
+  border-left: 4px solid #9FB0C2;
+}
+
+.custom-alert-success .custom-alert-title {
+  color: #5D6D7E;
 }
 
 /* 에러 타입 */
 .custom-alert-error .custom-alert-content {
-  border-top: 4px solid #e74c3c;
+  border-left: 4px solid #e74c3c;
 }
 
-/* 정보 타입 */
+.custom-alert-error .custom-alert-title {
+  color: #c0392b;
+}
+
+/* 정보 타입 - 웨딩 사이트 테마 색상 */
 .custom-alert-info .custom-alert-content {
-  border-top: 4px solid #3498db;
+  border-left: 4px solid #D7E8F0;
+}
+
+.custom-alert-info .custom-alert-title {
+  color: #34495E;
 }
 
 /* 모바일 반응형 */
 @media (max-width: 768px) {
   .custom-alert-content {
-    padding: 1.5rem;
-    max-width: 280px;
-  }
-  
-  .custom-alert-icon {
-    font-size: 2.5rem;
+    padding: 2rem;
+    max-width: 340px;
+    margin: 1rem;
   }
   
   .custom-alert-title {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
   
   .custom-alert-message {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+  
+  .custom-alert-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 28px;
+    height: 28px;
+    font-size: 1.125rem;
   }
 }
 

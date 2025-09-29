@@ -44,17 +44,8 @@ export class CustomAlert {
     const alertDiv = document.createElement('div')
     alertDiv.className = `custom-alert custom-alert-${type}`
     
-    const iconMap = {
-      success: '✅',
-      error: '❌', 
-      info: '💌'
-    }
-    
-    const icon = iconMap[type as keyof typeof iconMap] || '💌'
-    
     alertDiv.innerHTML = `
       <div class="custom-alert-content">
-        <div class="custom-alert-icon">${icon}</div>
         ${title ? `<div class="custom-alert-title">${title}</div>` : ''}
         <div class="custom-alert-message">${message}</div>
         <button class="custom-alert-close" onclick="this.closest('.custom-alert').remove()">
