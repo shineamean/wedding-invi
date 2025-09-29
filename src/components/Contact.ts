@@ -41,6 +41,16 @@ export function Contact(): string {
         
         ${Guestbook()}
         
+        <!-- 공유 버튼 섹션 -->
+        <div class="share-section">
+          <div class="share-buttons">
+            <button class="share-btn copy-link-btn" onclick="copyLink()">
+              <span class="share-icon">📋</span>
+              <span class="share-text">청첩장 주소 복사하기</span>
+            </button>
+          </div>
+        </div>
+        
         <footer class="wedding-footer">
           <p class="footer-text">
             저희의 새로운 시작에<br>

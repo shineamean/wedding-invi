@@ -5,6 +5,9 @@ import { galleryImages } from './data/wedding-info'
 import './components/BackgroundMusic'
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 인앱 브라우저 회피 체크 (페이지 로드 즉시 실행)
+  avoidInAppBrowser()
+  
   const app = document.getElementById('app')
   if (app) {
     app.innerHTML = WeddingApp()
@@ -22,6 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Background music is automatically initialized via import
   }
 })
+
+// 전역 함수 타입 정의
+declare global {
+  interface Window {
+    copyLink: () => void
+  }
+}
+
+// 링크 복사 함수  
+window.copyLink = function() {
+  const url = window.location.href
+  
+  navigator.clipboard.writeText(url).then(() => {
+    alert('청첩장 주소가 클립보드에 복사되었습니다! 📋')
+  }).catch(() => {
+    prompt('아래 주소를 복사해주세요:', url)
+  })
+}
 
 function initializeGallery() {
   const galleryTrack = document.querySelector('.gallery-track') as HTMLElement
