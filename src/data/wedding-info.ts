@@ -22,8 +22,8 @@ export const weddingInfo: WeddingInfo = {
   mapInfo: {
     lat: 37.5640907,
     lon: 126.9813174,
-    naverMapUrl: 'https://map.naver.com/p/search/%ED%95%9C%EA%B5%AD%EC%9D%80%ED%96%89/place/11572364',
-    kakaoMapUrl: 'https://map.kakao.com/link/map/%ED%95%9C%EA%B5%AD%EC%9D%80%ED%96%89,37.5640907,126.9813174'
+    naverMapUrl: 'https://map.naver.com/p/entry/place/11572364?lng=126.9813174&lat=37.5640907&placePath=%2Fhome',
+    kakaoMapUrl: 'https://map.kakao.com/link/map/한국은행,37.5640907,126.9813174'
   }
 }
 
