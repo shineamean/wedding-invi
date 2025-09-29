@@ -22,8 +22,8 @@ export const weddingInfo: WeddingInfo = {
   mapInfo: {
     lat: 37.5640907,
     lon: 126.9813174,
-    naverMapUrl: 'https://map.naver.com/p/entry/place/11572364?lng=126.9813174&lat=37.5640907&placePath=%2Fhome',
-    kakaoMapUrl: 'https://map.kakao.com/link/map/한국은행,37.5640907,126.9813174'
+    naverMapUrl: 'https://map.naver.com/p/search/서울특별시%20중구%20남대문로%2039%20한국은행',
+    kakaoMapUrl: 'https://map.kakao.com/link/search/한국은행%20서울특별시%20중구%20남대문로%2039'
   }
 }
 
