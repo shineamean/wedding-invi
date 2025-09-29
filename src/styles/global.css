@@ -72,10 +72,11 @@ body {
   position: relative;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* 글씨를 아래쪽으로 */
   justify-content: center;
   background: linear-gradient(135deg, #EBF5F8 0%, #D7E8F0 50%, #9FB0C2 100%);
   overflow: hidden;
+  padding-bottom: 3vh; /* 글씨를 조금 더 아래로 */
 }
 
 .cover-background {
@@ -105,6 +106,13 @@ body {
   z-index: 2;
   text-align: center;
   padding: 2rem;
+}
+
+/* 모바일에서 글씨 위치 조정 */
+@media (max-width: 768px) {
+  .cover {
+    padding-bottom: 2vh; /* 모바일에서 조금 더 아래로 */
+  }
 }
 
 .couple-names {

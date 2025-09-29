@@ -100,7 +100,7 @@ export const contactInfo: ContactInfo[] = [
   {
     name: '신랑',
     relation: '김지환',
-    phone: '010-1234-5678'
+    phone: '010-9297-9769'
   },
   {
     name: '신랑측 아버지',
@@ -115,7 +115,7 @@ export const contactInfo: ContactInfo[] = [
   {
     name: '신부',
     relation: '김이현',
-    phone: '010-9876-5432'
+    phone: '010-9119-0317'
   },
   {
     name: '신부측 아버지',
