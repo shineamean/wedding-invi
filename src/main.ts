@@ -33,6 +33,57 @@ declare global {
   }
 }
 
+// 인앱 브라우저 감지 및 회피 함수들
+function isKakaoTalkInAppBrowser(): boolean {
+  const userAgent = navigator.userAgent.toLowerCase()
+  return userAgent.includes('kakaotalk')
+}
+
+function isLineInAppBrowser(): boolean {
+  const userAgent = navigator.userAgent.toLowerCase()
+  return userAgent.includes('line')
+}
+
+function avoidInAppBrowser(): void {
+  const currentUrl = window.location.href
+  
+  // 이미 리다이렉트 파라미터가 있으면 무한 루프 방지
+  if (currentUrl.includes('openExternalBrowser=1') || currentUrl.includes('redirected=1')) {
+    console.log('이미 리다이렉트된 상태입니다.')
+    return
+  }
+  
+  // 카카오톡 인앱 브라우저 회피
+  if (isKakaoTalkInAppBrowser()) {
+    console.log('🚀 카카오톡 인앱 브라우저 감지됨. 외부 브라우저로 리다이렉트합니다.')
+    
+    try {
+      // 카카오톡 외부 브라우저 열기 스킴 사용
+      const redirectUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'redirected=1'
+      window.location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(redirectUrl)
+    } catch (error) {
+      console.warn('카카오톡 외부 브라우저 열기 실패:', error)
+    }
+    return
+  }
+  
+  // 라인 인앱 브라우저 회피
+  if (isLineInAppBrowser()) {
+    console.log('📱 라인 인앱 브라우저 감지됨. 외부 브라우저로 리다이렉트합니다.')
+    
+    try {
+      // 라인 외부 브라우저 열기 파라미터 추가
+      const separator = currentUrl.includes('?') ? '&' : '?'
+      window.location.href = currentUrl + separator + 'openExternalBrowser=1'
+    } catch (error) {
+      console.warn('라인 외부 브라우저 열기 실패:', error)
+    }
+    return
+  }
+  
+  console.log('✅ 일반 브라우저에서 접속됨')
+}
+
 // 링크 복사 함수  
 window.copyLink = function() {
   const url = window.location.href
