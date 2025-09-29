@@ -1,12 +1,16 @@
 import './styles/global.css'
 import { WeddingApp } from './components/WeddingApp'
 import { initNaverMap } from './components/NaverMap'
+import { galleryImages } from './data/wedding-info'
 import './components/BackgroundMusic'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app')
   if (app) {
     app.innerHTML = WeddingApp()
+    
+    // Start preloading images immediately
+    preloadGalleryImages()
     
     // Initialize components after DOM is ready
     initializeGallery()
@@ -282,4 +286,79 @@ function initCongratulationModal() {
       }
     })
   })
+}
+
+// Preload gallery images for better performance
+function preloadGalleryImages() {
+  console.log('Starting to preload gallery images...')
+  
+  // Load first few images immediately (high priority)
+  const priorityImages = galleryImages.slice(0, 3)
+  const remainingImages = galleryImages.slice(3)
+  
+  // Function to load a batch of images
+  const loadImageBatch = (images: typeof galleryImages, startIndex: number, isPriority: boolean = false) => {
+    return images.map((imageInfo, batchIndex) => {
+      const actualIndex = startIndex + batchIndex
+      return new Promise<void>((resolve) => {
+        const img = new Image()
+        
+        img.onload = () => {
+          console.log(`✅ ${isPriority ? '[HIGH]' : '[NORMAL]'} Loaded image ${actualIndex + 1}/${galleryImages.length}: ${imageInfo.src}`)
+          resolve()
+        }
+        
+        img.onerror = () => {
+          console.warn(`❌ Failed to load image ${actualIndex + 1}/${galleryImages.length}: ${imageInfo.src}`)
+          resolve() // Still resolve to not block other images
+        }
+        
+        // Set image source to start loading
+        img.src = imageInfo.src
+        
+        // Set size hints for better memory usage
+        if (imageInfo.width && imageInfo.height) {
+          img.width = imageInfo.width
+          img.height = imageInfo.height
+        }
+      })
+    })
+  }
+  
+  // Load priority images first
+  const priorityPromises = loadImageBatch(priorityImages, 0, true)
+  
+  // Load priority images immediately
+  Promise.allSettled(priorityPromises).then((priorityResults) => {
+    const prioritySuccessful = priorityResults.filter(result => result.status === 'fulfilled').length
+    console.log(`🚀 Priority images loaded: ${prioritySuccessful}/${priorityImages.length}`)
+    
+    // Dispatch event for priority images loaded
+    const priorityEvent = new CustomEvent('priorityImagesLoaded', {
+      detail: { successful: prioritySuccessful, total: priorityImages.length }
+    })
+    document.dispatchEvent(priorityEvent)
+  })
+  
+  // Load remaining images with a slight delay to not block priority images
+  setTimeout(() => {
+    const remainingPromises = loadImageBatch(remainingImages, 3, false)
+    
+    Promise.allSettled(remainingPromises).then((remainingResults) => {
+      const remainingSuccessful = remainingResults.filter(result => result.status === 'fulfilled').length
+      console.log(`📷 Remaining images loaded: ${remainingSuccessful}/${remainingImages.length}`)
+      
+      // Calculate total results
+      const totalSuccessful = priorityImages.length + remainingSuccessful // Assuming priority images loaded successfully
+      const totalFailed = galleryImages.length - totalSuccessful
+      
+      console.log(`🖼️ All image preloading completed: ${totalSuccessful} successful, ${totalFailed} failed`)
+      
+      // Dispatch event for all images loaded
+      const allEvent = new CustomEvent('galleryImagesPreloaded', {
+        detail: { successful: totalSuccessful, failed: totalFailed, total: galleryImages.length }
+      })
+      document.dispatchEvent(allEvent)
+    })
+  }, 100) // Small delay to ensure priority images get bandwidth first
 }

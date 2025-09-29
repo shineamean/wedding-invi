@@ -2,17 +2,14 @@ import { galleryImages } from '../data/wedding-info'
 
 export function Gallery(): string {
   const imageSlides = galleryImages.map((image, index) => {
-    const aspectRatio = image.width / image.height
-    const isLandscape = aspectRatio > 1
-    
     return `
-    <div class="gallery-slide ${isLandscape ? 'landscape' : 'portrait'}" 
-         data-index="${index}" 
-         data-aspect-ratio="${aspectRatio.toFixed(3)}">
+    <div class="gallery-slide" 
+         data-index="${index}">
       <img src="${image.src}" alt="${image.alt}" 
-           loading="lazy" 
            decoding="async"
-           fetchpriority="${index < 3 ? 'high' : 'low'}"
+           fetchpriority="${index < 3 ? 'high' : 'auto'}"
+           data-loading="false"
+           data-loaded="true"
            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'placeholder-img\\'>📷<br/>사진 준비중</div>'" />
     </div>
   `}).join('')
