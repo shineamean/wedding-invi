@@ -87,8 +87,8 @@ function createMap(): void {
       map: map,
       title: '한국은행 2층 컨퍼런스홀',
       icon: {
-        content: '<div style="background: #ff6b6b; color: white; padding: 8px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">💒 웨딩홀</div>',
-        anchor: new window.naver.maps.Point(30, 30)
+        content: '<div style="background: #ff6b6b; color: white; padding: 10px; border-radius: 50%; font-size: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">💒</div>',
+        anchor: new window.naver.maps.Point(20, 20)
       }
     })
 

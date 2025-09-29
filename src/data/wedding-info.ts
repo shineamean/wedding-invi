@@ -20,10 +20,10 @@ export const weddingInfo: WeddingInfo = {
     address: '서울특별시 중구 남대문로 39'
   },
   mapInfo: {
-    lat: 37.5640907,
-    lon: 126.9813174,
-    naverMapUrl: 'https://map.naver.com/p/search/서울특별시%20중구%20남대문로%2039%20한국은행',
-    kakaoMapUrl: 'https://map.kakao.com/link/search/한국은행%20서울특별시%20중구%20남대문로%2039'
+    lat: 37.562068,
+    lon: 126.980357,
+    naverMapUrl: 'https://map.naver.com/p/search/서울특별시%20중구%20남대문로%2039',
+    kakaoMapUrl: 'https://map.kakao.com/link/search/서울특별시%20중구%20남대문로%2039'
   }
 }
 
