@@ -95,12 +95,6 @@ export const galleryImages: GalleryImage[] = [
     height: 800
   },
   {
-    src: '/wedding-invi/images/photo7.webp',
-    alt: '웨딩 사진 7',
-    width: 600,
-    height: 800
-  },
-  {
     src: '/wedding-invi/images/photo12.webp',
     alt: '웨딩 사진 12',
     width: 600,

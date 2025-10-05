@@ -472,46 +472,70 @@ body {
   background: linear-gradient(270deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 70%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* Add subtle arrow indicators on hover */
+/* 화살표 표시 - 항상 명확하게 보이도록 */
 .gallery-side-area::before {
   content: '';
   width: 16px;
   height: 16px;
   border: none;
   transition: all 0.3s ease;
-  opacity: 0;
-  transform: scale(0.5);
+  opacity: 0.8; /* 더 진하게 항상 보이도록 */
+  transform: scale(1);
+  /* 그림자 추가로 가시성 향상 */
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
 }
 
 .gallery-side-left::before {
-  border-left: 3px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
-  transform: rotate(45deg) scale(0.5);
+  border-left: 2.5px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 2.5px solid rgba(255, 255, 255, 0.95);
+  transform: rotate(45deg);
   margin-right: 5px;
 }
 
 .gallery-side-right::before {
-  border-right: 3px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
-  transform: rotate(-45deg) scale(0.5);
+  border-right: 2.5px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 2.5px solid rgba(255, 255, 255, 0.95);
+  transform: rotate(-45deg);
   margin-left: 5px;
 }
 
 .gallery-side-area:hover::before {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1; /* 호버 시 완전히 불투명 */
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
 }
 
+
 .gallery-side-left:hover::before {
-  transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1.3);
   border-left-color: rgba(255, 255, 255, 1);
   border-bottom-color: rgba(255, 255, 255, 1);
 }
 
 .gallery-side-right:hover::before {
-  transform: rotate(-45deg) scale(1);
+  transform: rotate(-45deg) scale(1.3);
   border-right-color: rgba(255, 255, 255, 1);
   border-bottom-color: rgba(255, 255, 255, 1);
+}
+
+/* 모바일에서 화살표 조정 */
+@media (max-width: 768px) {
+  .gallery-side-area::before {
+    width: 14px;
+    height: 14px;
+    opacity: 0.85; /* 모바일에서 더 진하게 */
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
+  }
+  
+  .gallery-side-left::before {
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+  }
+  
+  .gallery-side-right::before {
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+  }
 }
 
 /* Gallery Mobile Styles */

@@ -122,7 +122,10 @@ function initializeGallery() {
 
   // Event listeners
   indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => goToSlide(index))
+    indicator.addEventListener('click', () => {
+      pauseAutoSlide()
+      goToSlide(index)
+    })
   })
 
   // Side area navigation
@@ -130,6 +133,7 @@ function initializeGallery() {
   sideAreas.forEach(area => {
     area.addEventListener('click', (e) => {
       e.preventDefault()
+      pauseAutoSlide()
       const direction = area.getAttribute('data-direction')
       if (direction === 'prev') {
         prevSlide()
@@ -138,6 +142,7 @@ function initializeGallery() {
       }
     })
   })
+
 
   // Touch/swipe support
   let startX = 0
@@ -162,6 +167,7 @@ function initializeGallery() {
     const threshold = 50
 
     if (Math.abs(deltaX) > threshold) {
+      pauseAutoSlide()
       if (deltaX > 0) {
         nextSlide()
       } else {
@@ -195,6 +201,7 @@ function initializeGallery() {
     const threshold = 50
 
     if (Math.abs(deltaX) > threshold) {
+      pauseAutoSlide()
       if (deltaX > 0) {
         nextSlide()
       } else {
@@ -208,22 +215,95 @@ function initializeGallery() {
     if (document.activeElement?.closest('.gallery')) {
       if (e.key === 'ArrowLeft') {
         e.preventDefault()
+        pauseAutoSlide()
         prevSlide()
       } else if (e.key === 'ArrowRight') {
         e.preventDefault()
+        pauseAutoSlide()
         nextSlide()
       }
     }
   })
 
-  // Auto-play (optional - can be enabled)
-  // setInterval(() => {
-  //   if (currentIndex === totalSlides - 1) {
-  //     goToSlide(0)
-  //   } else {
-  //     nextSlide()
-  //   }
-  // }, 5000)
+  // Auto-play 관리
+  let autoSlideInterval: NodeJS.Timeout | null = null
+  let pauseTimeout: NodeJS.Timeout | null = null
+
+  const startAutoSlide = () => {
+    // 기존 인터벌이 있다면 정리
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval)
+    }
+    
+    autoSlideInterval = setInterval(() => {
+      if (currentIndex === totalSlides - 1) {
+        goToSlide(0)
+      } else {
+        nextSlide()
+      }
+    }, 4000)
+  }
+
+  const stopAutoSlide = () => {
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval)
+      autoSlideInterval = null
+    }
+  }
+
+  // 사용자가 수동으로 조작할 때 자동 슬라이드를 잠시 멈춤
+  const pauseAutoSlide = () => {
+    // 기존 타이머들 정리
+    stopAutoSlide()
+    if (pauseTimeout) {
+      clearTimeout(pauseTimeout)
+    }
+    
+    // 8초 후 자동 슬라이드 재시작
+    pauseTimeout = setTimeout(() => {
+      startAutoSlide()
+      pauseTimeout = null
+    }, 8000)
+  }
+
+  // 페이지 가시성 변경 시 자동 슬라이드 관리
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoSlide()
+    } else {
+      // 페이지가 다시 보일 때 자동 슬라이드 재시작
+      startAutoSlide()
+    }
+  })
+
+  // 윈도우 포커스/블러 이벤트 처리
+  window.addEventListener('blur', stopAutoSlide)
+  window.addEventListener('focus', startAutoSlide)
+
+  // Intersection Observer로 갤러리가 화면에 보일 때만 자동 슬라이드 실행
+  const galleryObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 갤러리가 화면에 보일 때 자동 슬라이드 시작
+        if (!document.hidden) {
+          startAutoSlide()
+        }
+      } else {
+        // 갤러리가 화면에서 벗어날 때 자동 슬라이드 정지
+        stopAutoSlide()
+      }
+    })
+  }, {
+    threshold: 0.3 // 갤러리의 30%가 보일 때 활성화
+  })
+
+  const galleryElement = document.querySelector('.gallery')
+  if (galleryElement) {
+    galleryObserver.observe(galleryElement)
+  }
+
+  // 자동 슬라이드 시작 (초기에는 갤러리가 보이는 상태라고 가정)
+  startAutoSlide()
 
   // Initialize
   updateGallery()
