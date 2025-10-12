@@ -38,4 +38,10 @@ export interface ContactInfo {
   phone: string
 }
 
+export interface AccountInfo {
+  side: 'groom' | 'bride'
+  owner: string
+  bank: string
+  accountNumber: string
+}
 

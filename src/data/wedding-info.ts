@@ -1,4 +1,4 @@
-import { WeddingInfo, GalleryImage, ContactInfo } from '../types'
+import { WeddingInfo, GalleryImage, ContactInfo, AccountInfo } from '../types'
 
 export const weddingInfo: WeddingInfo = {
   bride: {
@@ -135,4 +135,35 @@ export const contactInfo: ContactInfo[] = [
   }
 ]
 
-
+export const accountInfo: AccountInfo[] = [
+  {
+    side: 'groom',
+    owner: '신랑 김지환',
+    bank: '국민은행',
+    accountNumber: '208602-04-115968'
+  },
+  {
+    side: 'groom',
+    owner: '아버지 김봉수',
+    bank: '신한은행',
+    accountNumber: '302-04-300896'
+  },
+  {
+    side: 'bride',
+    owner: '신부 김이현',
+    bank: '하나은행',
+    accountNumber: '581-910319-49107'
+  },
+  {
+    side: 'bride',
+    owner: '아버지 김진호',
+    bank: '국민은행',
+    accountNumber: '512-01-0032-789'
+  },
+  {
+    side: 'bride',
+    owner: '어머니 이숙희',
+    bank: '국민은행',
+    accountNumber: '860602-04-136921'
+  }
+]

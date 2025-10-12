@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize components after DOM is ready
     initializeGallery()
     initializeSmoothScroll()
-    initContactToggle()
     initCongratulationModal()
+    initAccountToggle()
     initNaverMap()
     
     // Background music is automatically initialized via import
@@ -329,35 +329,6 @@ function initializeSmoothScroll() {
   })
 }
 
-function initContactToggle() {
-  // Contact toggle functionality
-  const toggleButtons = document.querySelectorAll('.toggle-btn')
-  const groomContacts = document.getElementById('groom-contacts')
-  const brideContacts = document.getElementById('bride-contacts')
-  
-  toggleButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const clickedButton = e.currentTarget as HTMLButtonElement
-      const side = clickedButton.getAttribute('data-side')
-      
-      // Remove active class from all buttons
-      toggleButtons.forEach(btn => btn.classList.remove('active'))
-      
-      // Add active class to clicked button
-      clickedButton.classList.add('active')
-      
-      // Show/hide contact sections
-      if (side === 'groom') {
-        if (groomContacts) groomContacts.style.display = 'block'
-        if (brideContacts) brideContacts.style.display = 'none'
-      } else if (side === 'bride') {
-        if (groomContacts) groomContacts.style.display = 'none'
-        if (brideContacts) brideContacts.style.display = 'block'
-      }
-    })
-  })
-}
-
 function initCongratulationModal() {
   // Modal elements
   const modal = document.getElementById('congratulation-modal')
@@ -498,4 +469,50 @@ function preloadGalleryImages() {
       document.dispatchEvent(allEvent)
     })
   }, 100) // Small delay to ensure priority images get bandwidth first
+}
+
+// Account toggle functionality
+function initAccountToggle() {
+  // Make functions globally available
+  (window as any).toggleAccount = (side: 'groom' | 'bride') => {
+    const accountContent = document.getElementById(`${side}-account`)
+    const arrow = document.getElementById(`${side}-arrow`)
+    const header = document.querySelector(`.account-header[data-side="${side}"]`)
+    
+    if (accountContent && arrow && header) {
+      const isOpen = accountContent.style.display === 'block'
+      
+      if (isOpen) {
+        accountContent.style.display = 'none'
+        arrow.textContent = '▼'
+        header.classList.remove('active')
+      } else {
+        accountContent.style.display = 'block'
+        arrow.textContent = '▲'
+        header.classList.add('active')
+      }
+    }
+  }
+  
+  (window as any).copyAccountNumber = (bank: string, accountNumber: string, owner: string) => {
+    // Copy to clipboard
+    navigator.clipboard.writeText(accountNumber).then(() => {
+      // Show custom alert
+      const customAlert = (window as any).showCustomAlert
+      if (customAlert) {
+        customAlert(
+          '계좌번호가 복사되었습니다',
+          `${bank} ${accountNumber}\n${owner}`,
+          'success'
+        )
+      } else {
+        alert(`계좌번호가 복사되었습니다\n${bank} ${accountNumber}\n${owner}`)
+      }
+    }).catch(err => {
+      console.error('Failed to copy account number:', err)
+      alert('계좌번호 복사에 실패했습니다')
+    })
+  }
+  
+  console.log('Account toggle initialized')
 }
