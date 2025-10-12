@@ -498,19 +498,23 @@ function initAccountToggle() {
     // Copy to clipboard
     navigator.clipboard.writeText(accountNumber).then(() => {
       // Show custom alert
-      const customAlert = (window as any).showCustomAlert
-      if (customAlert) {
-        customAlert(
-          '계좌번호가 복사되었습니다',
-          `${bank} ${accountNumber}\n${owner}`,
-          'success'
-        )
-      } else {
-        alert(`계좌번호가 복사되었습니다\n${bank} ${accountNumber}\n${owner}`)
+      if (window.showAlert) {
+        window.showAlert({
+          title: '✓ 복사 완료',
+          message: `${bank} ${accountNumber}<br>${owner}`,
+          type: 'success',
+          duration: 2500
+        })
       }
     }).catch(err => {
       console.error('Failed to copy account number:', err)
-      alert('계좌번호 복사에 실패했습니다')
+      if (window.showAlert) {
+        window.showAlert({
+          title: '복사 실패',
+          message: '계좌번호 복사에 실패했습니다',
+          type: 'error'
+        })
+      }
     })
   }
   

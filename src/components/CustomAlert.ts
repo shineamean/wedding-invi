@@ -44,15 +44,28 @@ export class CustomAlert {
     const alertDiv = document.createElement('div')
     alertDiv.className = `custom-alert custom-alert-${type}`
     
-    alertDiv.innerHTML = `
-      <div class="custom-alert-content">
-        ${title ? `<div class="custom-alert-title">${title}</div>` : ''}
-        <div class="custom-alert-message">${message}</div>
-        <button class="custom-alert-close" onclick="this.closest('.custom-alert').remove()">
-          ×
-        </button>
-      </div>
-    `
+    const contentDiv = document.createElement('div')
+    contentDiv.className = 'custom-alert-content'
+    
+    if (title) {
+      const titleDiv = document.createElement('div')
+      titleDiv.className = 'custom-alert-title'
+      titleDiv.innerHTML = title
+      contentDiv.appendChild(titleDiv)
+    }
+    
+    const messageDiv = document.createElement('div')
+    messageDiv.className = 'custom-alert-message'
+    messageDiv.innerHTML = message
+    contentDiv.appendChild(messageDiv)
+    
+    const closeBtn = document.createElement('button')
+    closeBtn.className = 'custom-alert-close'
+    closeBtn.innerHTML = '×'
+    closeBtn.onclick = () => alertDiv.remove()
+    contentDiv.appendChild(closeBtn)
+    
+    alertDiv.appendChild(contentDiv)
     
     return alertDiv
   }
