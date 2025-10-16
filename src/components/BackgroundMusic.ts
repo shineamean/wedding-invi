@@ -2,6 +2,7 @@ export class BackgroundMusic {
   private audio: HTMLAudioElement | null = null
   private isPlaying: boolean = false
   private button: HTMLElement | null = null
+  private wasPlayingBeforeHidden: boolean = false
 
   constructor() {
     this.init()
@@ -25,6 +26,9 @@ export class BackgroundMusic {
     
     // Handle autoplay restrictions
     this.handleAutoplayRestrictions()
+    
+    // Handle page visibility changes (mobile background/foreground)
+    this.handleVisibilityChange()
   }
 
   private createMusicButton() {
@@ -170,6 +174,69 @@ export class BackgroundMusic {
     }, timeStep)
   }
 
+  private handleVisibilityChange() {
+    // Page Visibility API를 사용하여 페이지가 숨겨지거나 보여질 때 음악 제어
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // 페이지가 숨겨질 때 (모바일에서 다른 앱으로 전환하거나 브라우저를 최소화할 때)
+        if (this.isPlaying) {
+          this.wasPlayingBeforeHidden = true
+          this.pauseMusic()
+          console.log('페이지가 숨겨져서 음악을 일시정지합니다.')
+        }
+      } else {
+        // 페이지가 다시 보여질 때
+        if (this.wasPlayingBeforeHidden && !this.isPlaying) {
+          this.resumeMusic()
+          this.wasPlayingBeforeHidden = false
+          console.log('페이지가 다시 보여져서 음악을 재개합니다.')
+        }
+      }
+    })
+
+    // 추가적으로 blur/focus 이벤트도 처리 (일부 브라우저에서 더 정확할 수 있음)
+    window.addEventListener('blur', () => {
+      if (this.isPlaying) {
+        this.wasPlayingBeforeHidden = true
+        this.pauseMusic()
+        console.log('창이 포커스를 잃어서 음악을 일시정지합니다.')
+      }
+    })
+
+    window.addEventListener('focus', () => {
+      if (this.wasPlayingBeforeHidden && !this.isPlaying) {
+        // 약간의 지연을 두어 사용자가 실제로 돌아왔는지 확인
+        setTimeout(() => {
+          if (!document.hidden && this.wasPlayingBeforeHidden) {
+            this.resumeMusic()
+            this.wasPlayingBeforeHidden = false
+            console.log('창이 다시 포커스를 받아서 음악을 재개합니다.')
+          }
+        }, 100)
+      }
+    })
+  }
+
+  private pauseMusic() {
+    if (this.audio && this.isPlaying) {
+      this.audio.pause()
+      this.isPlaying = false
+      this.updateButton()
+    }
+  }
+
+  private resumeMusic() {
+    if (this.audio && !this.isPlaying) {
+      this.audio.play().then(() => {
+        this.isPlaying = true
+        this.updateButton()
+      }).catch(error => {
+        console.log('음악 재개 실패:', error)
+        this.wasPlayingBeforeHidden = false
+      })
+    }
+  }
+
   private showAutoplayMessage() {
     const message = document.createElement('div')
     message.className = 'autoplay-message'
@@ -240,6 +307,11 @@ export class BackgroundMusic {
     if (this.button) {
       this.button.remove()
     }
+    
+    // 이벤트 리스너 정리
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange)
+    window.removeEventListener('blur', this.handleVisibilityChange)
+    window.removeEventListener('focus', this.handleVisibilityChange)
   }
 }
 
