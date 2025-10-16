@@ -32,15 +32,16 @@ export function Location(): string {
           <div class="transport-methods">
             <div class="transport-item">
               <h5>🚇 지하철</h5>
-              <p>• 1, 2호선 시청역 7번출구 도보 8분</p>
-              <p>• 2호선 을지로입구역 7번출구 도보 5분</p>
-              <p>• 4호선 회현역 7번출구 도보 7분</p>
+              <p>• <span class="subway-line-1">1호선</span> 시청역 7번출구 도보 8분</p>
+              <p>• <span class="subway-line-2">2호선</span> 시청역 7번출구 도보 8분</p>
+              <p>• <span class="subway-line-2">2호선</span> 을지로입구역 7번출구 도보 5분</p>
+              <p>• <span class="subway-line-4">4호선</span> 회현역 7번출구 도보 7분</p>
             </div>
             
             <div class="transport-item">
               <h5>🚌 버스</h5>
-              <p>• 간선 143, 401, 406, 502, 504, 705</p>
-              <p>• 지선 7017, 7021, 7022</p>
+              <p>• <span class="bus-trunk">간선</span> 143, 401, 406, 502, 504, 705</p>
+              <p>• <span class="bus-branch">지선</span> 7017, 7021, 7022</p>
             </div>
             
             <div class="transport-item">

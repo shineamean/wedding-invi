@@ -775,6 +775,33 @@ body {
   margin-bottom: 0.2rem;
 }
 
+/* 서울 지하철 호선별 색상 */
+.subway-line-1 {
+  color: #0052A4;
+  font-weight: 600;
+}
+
+.subway-line-2 {
+  color: #00A84D;
+  font-weight: 600;
+}
+
+.subway-line-4 {
+  color: #00A5DE;
+  font-weight: 600;
+}
+
+/* 서울 버스 종류별 색상 */
+.bus-trunk {
+  color: #0068B7;
+  font-weight: 600;
+}
+
+.bus-branch {
+  color: #53B332;
+  font-weight: 600;
+}
+
 /* Account Section */
 .account-section {
   padding: 4rem 0;
